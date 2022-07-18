@@ -1,0 +1,36 @@
+$themes: (
+    bgColor: (
+        darkTheme: #222,
+        lightTheme: #fff,
+    ),
+    textColor: (
+        darkTheme: #fff,
+        lightTheme: #222,
+    ),
+    borderColor: (
+        darkTheme: #fff,
+        lightTheme: #ccc,
+    ),
+    buttonColor: (
+        darkTheme: #fff,
+        lightTheme: #ccc,
+    )
+);
+
+@mixin styles($mode) {
+    @each $key, $map in $themes {
+        @each $prop, $color in $map {
+            @if $prop == $mode {
+                --#{$key}: #{$color};
+            }
+        }
+    }
+}
+
+.dark-mode {
+    @include styles("darkTheme");
+}
+
+.light-mode {
+    @include styles("lightTheme");
+}
